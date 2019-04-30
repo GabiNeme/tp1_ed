@@ -17,11 +17,11 @@ std::string Aluno::getNome(){
     return this->_nome;
 }
 
-double Alunon::getNota(){
+double Aluno::getNota(){
     return this->_nota;
 }
 
-int getCurso(int opcao){
+int Aluno::getCurso(int opcao){
     //TODO Tratar se opcao <0 ou >1
     return this->_cursos[opcao];
 }

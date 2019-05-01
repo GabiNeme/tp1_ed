@@ -8,6 +8,14 @@ Aluno::Aluno(int ordemInscricao,std::string nome, double nota, int curso1, int c
     this->_cursos[1] = curso2;
 }
 
+Aluno::Aluno(){
+    this->_ordemInscricao = 0;
+    this->_nome = "";
+    this->_nota = 0;
+    this->_cursos[0] = -1;
+    this->_cursos[1] = -1;
+}
+
 //funções get
 int Aluno::getOrdemInscricao(){
     return this->_ordemInscricao;
@@ -24,4 +32,14 @@ double Aluno::getNota(){
 int Aluno::getCurso(int opcao){
     //TODO Tratar se opcao <0 ou >1
     return this->_cursos[opcao];
+}
+
+
+int Aluno::getCodSit(){
+    return this->_codSit;
+}
+
+
+void Aluno::setCodSit(int codigo){
+    this->_codSit = codigo;
 }

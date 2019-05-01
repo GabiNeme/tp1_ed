@@ -3,18 +3,20 @@
 
 #include <string>
 
-#include "aluno.h"
+#include "listaAlunos.h"
 
 class Curso{
 private:
     std::string _nome;
     int _vagas;
     double _notaCorte;
-    int _inscritos;
-    //TODO ListaAlunos inscritosCurso;
+    int _numInscritos;
+    ListaAlunos inscritosCurso;
 
 public:
+
     //construtor
+    Curso();
     Curso(std::string nome, int vagas);
 
     //funções get
@@ -23,10 +25,13 @@ public:
     double getNotaCorte();
     int getNumInscritos();
 
-    void adicionaAluno(Aluno* alunoLista);
-    void imprimeCurso();
+    //funções set
+    void setNome(std::string novoNome);
+    void setVagas(int vagas);
 
 
+    bool adicionaAluno(Aluno novoAluno);
+    std::string imprimeCurso( Aluno listaAlunos[]);
 
 };
 

@@ -30,16 +30,5 @@ double Aluno::getNota(){
 }
 
 int Aluno::getCurso(int opcao){
-    //TODO Tratar se opcao <0 ou >1
     return this->_cursos[opcao];
-}
-
-
-int Aluno::getCodSit(){
-    return this->_codSit;
-}
-
-
-void Aluno::setCodSit(int codigo){
-    this->_codSit = codigo;
 }

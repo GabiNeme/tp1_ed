@@ -79,29 +79,19 @@ void preencheListaAlunos(Aluno listaAlunos[], int numAlunos, int numCursos, char
 }
 
 void ordenaAlunosPorNota(Aluno listaAlunos[], int numAlunos, int alunosOrdenados[]){
-    if (numAlunos < 1)
-        return;
-
-    double nota_max;
-    int posicaoArray;
+    
+    ListaAlunos listaAux;
 
     for(int i = 0; i < numAlunos; i++){
-        alunosOrdenados[i] = i;
+        listaAux.insereAlunoOrdenado(i, listaAlunos);
     }  
 
-    for(int i = 0; i < numAlunos-1; i++){
+    node_t *atual = listaAux.getCelCabeca()->proximo;
+    int j = 0;
+    while(atual != nullptr){
+        alunosOrdenados[j] = atual->idAluno;
+        atual = atual->proximo;
+        j++;
+    }
 
-        nota_max = listaAlunos[alunosOrdenados[i]].getNota();
-        posicaoArray = alunosOrdenados[i];
-
-        for(int j = i; j < numAlunos; j++){
-            if (listaAlunos[alunosOrdenados[j]].getNota()> nota_max){
-                nota_max = listaAlunos[alunosOrdenados[j]].getNota();
-                posicaoArray = j;
-            }
-        }
-        int aux = alunosOrdenados[i];
-        alunosOrdenados[i] = alunosOrdenados[posicaoArray];
-        alunosOrdenados[posicaoArray]= aux;
-    }  
 }

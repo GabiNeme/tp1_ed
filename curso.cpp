@@ -9,6 +9,7 @@ Curso::Curso(){
     this->_vagas = 0;
     this->_notaCorte = 0;
     this->_numInscritos = 0;
+    this->_ultimaNotaAluno = 0;
 }
 
 Curso::Curso(std::string nome, int vagas){
@@ -35,6 +36,15 @@ int Curso::getNumInscritos(){
     return this->_numInscritos;
 }
 
+int Curso::getUltimaNotaAluno(){
+    return this->_ultimaNotaAluno;
+}
+
+
+node_t * Curso::getListaInscritos(){
+    return this->inscritosCurso.getCelCabeca()->proximo;
+}
+
 void Curso::setNome(std::string novoNome){
     this->_nome = novoNome;
 }
@@ -43,19 +53,27 @@ void Curso::setVagas(int vagas){
     this->_vagas = vagas;
 }
 
-//retorna 1 se passou dentro das vagas, e 0 se não passou dentro das vagas
-bool Curso::adicionaAluno(Aluno novoAluno){
-    this->inscritosCurso.insereAluno(novoAluno.getOrdemInscricao());
+
+bool Curso::adicionaAluno(Aluno novoAluno, int posicao){
+    if(posicao == _numInscritos+1){
+        this->inscritosCurso.insereAluno(novoAluno.getOrdemInscricao());
+    }else{
+        this->inscritosCurso.insereAlunoPosicao(novoAluno.getOrdemInscricao(), posicao);
+    }
+
+    this->_ultimaNotaAluno = novoAluno.getNota();
     _numInscritos ++;
-    if(_numInscritos > _vagas){
+    if(posicao > _vagas){
         return false;
     }else{
-        if (_numInscritos == _vagas){
+        if (posicao == _vagas){
             this->_notaCorte = novoAluno.getNota();
         }
         return true;
     }
 }
+
+
 
 std::string Curso::imprimeCurso(Aluno listaAlunos[]){
 
@@ -66,7 +84,7 @@ std::string Curso::imprimeCurso(Aluno listaAlunos[]){
 
     node_t *alunoAtual = this->inscritosCurso.getCelCabeca()->proximo;
     int cont = 0;
-    while(alunoAtual != nullptr && cont < 10){
+    while(alunoAtual != nullptr){
         if ( cont == this->_vagas ){
             stream <<   "Lista de espera" << std::endl;
         }

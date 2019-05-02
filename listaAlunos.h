@@ -19,11 +19,12 @@ public:
     ListaAlunos();
     ~ListaAlunos();
     void insereAluno(int idNovoAluno);
-    void removeAluno(int idAluno);
+    void insereAlunoPosicao(int idNovoAluno, int posicao);
+    void insereAlunoOrdenado(int idNovoAluno, Aluno listaAluno[]);
+
 
     node_t *getCelCabeca();
-
-    std::string imprimeLista(Aluno listaAlunos[]);
+    node_t *getUltimo();
 
 };
 

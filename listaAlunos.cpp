@@ -31,10 +31,39 @@ void ListaAlunos::insereAluno(int idNovoAluno){
 
     this->num_elementos_lista++;
 }
-/**
-int ListaAlunos::insereAlunoOrdemNota(Aluno novoAluno){
+
+
+void ListaAlunos::insereAlunoPosicao(int idNovoAluno, int posicao){
+  node_t *no_a_inserir = new node_t();
+    no_a_inserir->idAluno = idNovoAluno;
+    no_a_inserir->proximo = nullptr;
+
+    this->num_elementos_lista++;
+
+    node_t *anterior = this->inicio;
+    node_t *atual = this->inicio->proximo;
+    int i = 1;
+    while(atual != nullptr){
+        //encontrou posicao
+        if(i == posicao){
+            no_a_inserir->proximo = anterior->proximo;
+            anterior->proximo = no_a_inserir;
+            return;
+        }else{
+            anterior = atual;
+            atual = atual->proximo;
+        }
+        i++;
+    }
+
+    //insere na ultima posicao
+    this->fim->proximo = no_a_inserir;
+    this->fim = no_a_inserir;
+}
+
+void ListaAlunos::insereAlunoOrdenado(int idNovoAluno, Aluno listaAluno[]){
     node_t *no_a_inserir = new node_t();
-    no_a_inserir->aluno = novoAluno;
+    no_a_inserir->idAluno = idNovoAluno;
     no_a_inserir->proximo = nullptr;
 
     this->num_elementos_lista++;
@@ -43,14 +72,10 @@ int ListaAlunos::insereAlunoOrdemNota(Aluno novoAluno){
     node_t *atual = this->inicio->proximo;
     while(atual != nullptr){
         //encontrou posicao
-        if(atual->aluno.getNota() < novoAluno.getNota() ||
-           (atual->aluno.getNota() == novoAluno.getNota() && atual->aluno.getOrdemInscricao() > novoAluno.getOrdemInscricao())){
+        if(listaAluno[idNovoAluno].getNota() > listaAluno[atual->idAluno].getNota()){
             no_a_inserir->proximo = anterior->proximo;
             anterior->proximo = no_a_inserir;
-            if (atual->aluno.getNota() == novoAluno.getNota()){
-                return 1; //código que é preciso avaliar os dois alunos, pois têm nota igual
-            }
-            return 0;
+            return;
         }else{
             anterior = atual;
             atual = atual->proximo;
@@ -60,34 +85,13 @@ int ListaAlunos::insereAlunoOrdemNota(Aluno novoAluno){
     //insere na ultima posicao
     this->fim->proximo = no_a_inserir;
     this->fim = no_a_inserir;
-
-}
-**/
-void ListaAlunos::removeAluno(int idAluno){
-    node_t *anterior = this->inicio;
-    node_t *atual = this->inicio->proximo;
-    while(atual != nullptr){
-        //encontrou posicao
-        if(atual->idAluno == idAluno ){
-            anterior->proximo = atual->proximo;
-            delete atual;
-            return;
-        }
-    }
 }
 
 node_t *ListaAlunos::getCelCabeca(){
     return this->inicio;
 }
 
-std::string ListaAlunos::imprimeLista(Aluno listaAlunos[]){
-    std::string texto;
-
-    node_t *atual = this->inicio->proximo;
-    while(atual != nullptr){
-        Aluno aluno = listaAlunos[atual->idAluno];
-        texto.append(aluno.getNome()+'\n');
-        atual = atual->proximo;
-    }
-    return texto;
+node_t *ListaAlunos::getUltimo(){
+    return this->fim;
 }
+

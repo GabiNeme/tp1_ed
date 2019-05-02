@@ -1,5 +1,5 @@
-#ifndef LISTAALUNOS_H
-#define LISTAALUNOS_H
+#ifndef LISTA_H
+#define LISTA_H
 
 #include "aluno.h"
 
@@ -9,15 +9,14 @@ struct node_t {
 	node_t *proximo;
 };
 
-class ListaAlunos {
+class Lista {
 private:
     node_t *inicio;
     node_t *fim;
-    int num_elementos_lista;
 
 public:
-    ListaAlunos();
-    ~ListaAlunos();
+    Lista();
+    ~Lista();
     void insereAluno(int idNovoAluno);
     void insereAlunoPosicao(int idNovoAluno, int posicao);
     void insereAlunoOrdenado(int idNovoAluno, Aluno listaAluno[]);
@@ -28,4 +27,4 @@ public:
 
 };
 
-#endif/* LISTAALUNOS_H */
+#endif/* LISTA_H */

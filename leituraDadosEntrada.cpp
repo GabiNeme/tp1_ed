@@ -19,7 +19,7 @@ void leNumeroDeCursosEAlunos(char ** argv, int & numCursos, int & numAlunos){
         std::cout << "Não foi possível ler o arquivo de entrada. " << argv[1] << " não encontrado."  << std::endl;
         exit(1);
     }
-    
+
     arquivoEntrada >> numCursos;
     arquivoEntrada >> numAlunos;
     arquivoEntrada.close();
@@ -71,7 +71,7 @@ void preencheListaAlunos(Aluno listaAlunos[], int numAlunos, int numCursos, char
         iss >> nota;
         iss >> opCurso1;
         iss >> opCurso2;
-        
+
         Aluno aluno(i, nomeAluno, nota, opCurso1, opCurso2);
         listaAlunos[i] = aluno;
     }
@@ -79,12 +79,12 @@ void preencheListaAlunos(Aluno listaAlunos[], int numAlunos, int numCursos, char
 }
 
 void ordenaAlunosPorNota(Aluno listaAlunos[], int numAlunos, int alunosOrdenados[]){
-    
-    ListaAlunos listaAux;
+
+    Lista listaAux;
 
     for(int i = 0; i < numAlunos; i++){
         listaAux.insereAlunoOrdenado(i, listaAlunos);
-    }  
+    }
 
     node_t *atual = listaAux.getCelCabeca()->proximo;
     int j = 0;

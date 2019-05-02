@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "listaAlunos.h"
+#include "lista.h"
 
 class Curso{
 private:
@@ -15,7 +15,7 @@ private:
 
 public:
 
-    ListaAlunos inscritosCurso;
+    Lista inscritosCurso;
 
     //construtor
     Curso();

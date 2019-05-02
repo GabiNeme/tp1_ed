@@ -1,16 +1,15 @@
-#include "listaAlunos.h"
+#include "lista.h"
 
 
-ListaAlunos::ListaAlunos(){
+Lista::Lista(){
     node_t *no_cabeca = new node_t();
     this->inicio = no_cabeca;
     no_cabeca->proximo = nullptr;
     this->fim = no_cabeca;
-    this->num_elementos_lista = 0;
 }
 
 
-ListaAlunos::~ListaAlunos(){
+Lista::~Lista(){
     node_t *atual = this->inicio;
     node_t *prox = nullptr;
     while (atual != nullptr){
@@ -21,24 +20,20 @@ ListaAlunos::~ListaAlunos(){
 }
 
 
-void ListaAlunos::insereAluno(int idNovoAluno){
+void Lista::insereAluno(int idNovoAluno){
     node_t *no_a_inserir = new node_t();
     no_a_inserir->idAluno = idNovoAluno;
     no_a_inserir->proximo = nullptr;
 
     this->fim->proximo = no_a_inserir;
     this->fim = no_a_inserir;
-
-    this->num_elementos_lista++;
 }
 
 
-void ListaAlunos::insereAlunoPosicao(int idNovoAluno, int posicao){
+void Lista::insereAlunoPosicao(int idNovoAluno, int posicao){
   node_t *no_a_inserir = new node_t();
     no_a_inserir->idAluno = idNovoAluno;
     no_a_inserir->proximo = nullptr;
-
-    this->num_elementos_lista++;
 
     node_t *anterior = this->inicio;
     node_t *atual = this->inicio->proximo;
@@ -61,12 +56,10 @@ void ListaAlunos::insereAlunoPosicao(int idNovoAluno, int posicao){
     this->fim = no_a_inserir;
 }
 
-void ListaAlunos::insereAlunoOrdenado(int idNovoAluno, Aluno listaAluno[]){
+void Lista::insereAlunoOrdenado(int idNovoAluno, Aluno listaAluno[]){
     node_t *no_a_inserir = new node_t();
     no_a_inserir->idAluno = idNovoAluno;
     no_a_inserir->proximo = nullptr;
-
-    this->num_elementos_lista++;
 
     node_t *anterior = this->inicio;
     node_t *atual = this->inicio->proximo;
@@ -87,11 +80,11 @@ void ListaAlunos::insereAlunoOrdenado(int idNovoAluno, Aluno listaAluno[]){
     this->fim = no_a_inserir;
 }
 
-node_t *ListaAlunos::getCelCabeca(){
+node_t *Lista::getCelCabeca(){
     return this->inicio;
 }
 
-node_t *ListaAlunos::getUltimo(){
+node_t *Lista::getUltimo(){
     return this->fim;
 }
 

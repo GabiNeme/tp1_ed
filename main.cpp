@@ -1,5 +1,5 @@
 #include "curso.h"
-#include "listaAlunos.h"
+#include "lista.h"
 #include "leituraDadosEntrada.h"
 #include "distribuiAlunos.h"
 #include "saidaDados.h"
@@ -15,7 +15,7 @@ int main(int argc, char *argv[]){
 
     int numCursos, numAlunos;
     leNumeroDeCursosEAlunos(argv, numCursos, numAlunos);
- 
+
     Curso listaCursos[numCursos];
     preencheListaCursos(listaCursos, numCursos, argv);
 
